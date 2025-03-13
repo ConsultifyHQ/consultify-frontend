@@ -103,11 +103,11 @@ export default function WishlistForm() {
                   <FormLabel>Your Role</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="text-gray-500">
                         <SelectValue placeholder="Select your role" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent >
                       <SelectItem value="patient">Patient</SelectItem>
                       <SelectItem value="doctor">Doctor</SelectItem>
                       <SelectItem value="nurse">Nurse</SelectItem>

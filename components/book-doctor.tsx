@@ -11,12 +11,12 @@ export default function BookDoctor() {
             time.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+            {/* <Button size="lg" className="bg-white text-primary hover:bg-white/90">
               Find a Doctor Now
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
               View Specialties
-            </Button>
+            </Button> */}
           </div>
 
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">

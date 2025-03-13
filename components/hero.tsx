@@ -17,11 +17,11 @@ export default function Hero() {
             </h1>
             <p className="text-lg md:text-xl opacity-90 mb-8">
               Get expert medical advice, book lab tests, request home visits, and connect with certified healthcare
-              professionals—all from the comfort of your home.
+              professionals all from the comfort of your home.
             </p>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+            {/* <Button size="lg" className="bg-white text-primary hover:bg-white/90">
               Join Wishlist
-            </Button>
+            </Button> */}
 
             <div className="hidden md:flex flex-wrap gap-4 mt-8">
               <div className="flex items-center space-x-2">
@@ -86,12 +86,12 @@ export default function Hero() {
           </div>
 
           <div className="relative">
-            <div className="bg-white/10 backdrop-blur-sm p-1 rounded-2xl">
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
               <WishlistForm />
             </div>
 
             <div className="hidden md:block absolute -top-16 -right-16 text-blue-200 opacity-30">
-              <svg
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="142"
                 height="142"
@@ -103,7 +103,7 @@ export default function Hero() {
                 strokeLinejoin="round"
               >
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-              </svg>
+              </svg> */}
             </div>
           </div>
         </div>

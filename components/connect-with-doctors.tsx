@@ -64,14 +64,13 @@ export default function ConnectWithDoctors() {
 
           <div className="relative h-[400px] md:h-[500px] consultation-card">
             <div className="absolute inset-0 bg-gray-100 rounded-xl overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  src="/placeholder.svg?height=500&width=400"
-                  alt="Doctor on mobile screen"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2%20Unstoppable%20Stocks%20to%20Buy%20With%20Your%20%241%2C400%20Stimulus%20Check%20_%20The%20Motley%20Fool-uSeyo1cqfijMyOsMuimMwwDXUlLIjs.jpeg"
+                alt="Doctor consulting with patient via video call"
+                fill
+                className="object-cover"
+                priority
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
               <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-4 rounded-lg">
                 <div className="flex items-center">
@@ -91,8 +90,8 @@ export default function ConnectWithDoctors() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-medium text-primary">Dr. Sarah Johnson</p>
-                    <p className="text-xs text-gray-500">Cardiologist • Available Now</p>
+                    <p className="font-medium text-primary">Dr. Michael Cohen</p>
+                    <p className="text-xs text-gray-500">General Physician • Available Now</p>
                   </div>
                   <Button size="sm" className="ml-auto">
                     Connect

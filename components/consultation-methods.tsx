@@ -40,9 +40,9 @@ export default function ConsultationMethods() {
               <div className="mb-4">{method.icon}</div>
               <h3 className="text-xl font-bold mb-2">{method.title}</h3>
               <p className="text-gray-600 mb-6">{method.description}</p>
-              <Button variant="outline" size="sm">
+              {/* <Button variant="outline" size="sm">
                 {method.cta}
-              </Button>
+              </Button> */}
             </div>
           ))}
         </div>

@@ -1,4 +1,4 @@
-// File: /Users/davydking/Desktop/consultify/front-end/app/page.tsx
+// File: /Users/abutanko/Documents/consultify/consultify-frontend/app/page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
