@@ -7,6 +7,8 @@ export async function GET() {
         `${baseUrl}/auth/login`, // Login Page
         `${baseUrl}/auth/register`, // Register Page
         // `${baseUrl}/profile`, // User Profile (If available)
+        `${baseUrl}/legal/privacy-policy`, // Privacy Policy
+        `${baseUrl}/legal/terms-of-service`, // Terms of Service
       ];
   
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
