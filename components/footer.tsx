@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import { Instagram, Linkedin } from "lucide-react"
 
 export default function Footer() {
   // Function to handle smooth scrolling
@@ -22,6 +23,51 @@ export default function Footer() {
             <p className="text-sm">
               Your trusted healthcare companion. Access quality healthcare services anytime, anywhere.
             </p>
+
+            {/* Social Media Links */}
+            <div className="flex space-x-4 mt-6">
+              <Link
+                href="https://linkedin.com/company/consultifycare-limited"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition-colors"
+                aria-label="Follow us on LinkedIn"
+              >
+                <Linkedin className="h-5 w-5 text-gray-300" />
+              </Link>
+              <Link
+                href="https://x.com/consultifycare?s=21"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition-colors"
+                aria-label="Follow us on X (Twitter)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5 text-gray-300"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </Link>
+              <Link
+                href="https://www.instagram.com/consultifycare?igsh=MTE2aTA3bW5rZW16eQ%3D%3D&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition-colors"
+                aria-label="Follow us on Instagram"
+              >
+                <Instagram className="h-5 w-5 text-gray-300" />
+              </Link>
+            </div>
           </div>
 
           {/* Company Links */}
@@ -52,7 +98,6 @@ export default function Footer() {
                   Consultation
                 </button>
               </li>
-              
             </ul>
           </div>
 

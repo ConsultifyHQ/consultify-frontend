@@ -11,7 +11,7 @@ import HomeVisitServices from "@/components/home-visit-services"
 import WhoItsFor from "@/components/who-its-for"
 import TrustSignals from "@/components/trust-signals"
 import PartnerWithUs from "@/components/partner-with-us"
-import EmailSignup from "@/components/email-signup"
+// import EmailSignup from "@/components/email-signup"
 import Footer from "@/components/footer"
 import ScrollToTop from "@/components/scroll-to-top"
 
@@ -31,7 +31,7 @@ export default function Home() {
       <WhoItsFor />
       <TrustSignals />
       <PartnerWithUs />
-      <EmailSignup />
+      {/* <EmailSignup /> */}
       <Footer />
       <ScrollToTop />
     </main>
