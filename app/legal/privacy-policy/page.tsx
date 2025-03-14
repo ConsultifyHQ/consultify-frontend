@@ -101,9 +101,9 @@ export default function PrivacyPolicy() {
               <h2 className="text-2xl font-semibold mt-8 mb-4">9. Contact Us</h2>
               <p>If you have any questions about this Privacy Policy, you can contact us at:</p>
               <ul className="list-disc pl-6 mb-4">
-                <li>Email: <strong>privacy@consultifycare.com</strong></li>
+                <li>Email: <strong>consultifycare@gmail.com</strong></li>
                 <li>Phone: <strong>+234 704 700 7770</strong></li>
-                <li>Address: Consultify Care HQ, Lagos, Nigeria</li>
+                <li>Address:Bassan Plaza Plot 759 Independent Avenue Central Business District Fct Independent Avenue, Central Business District, Federal Capital Territory</li>
               </ul>
 
               <div className="bg-gray-100 p-6 rounded-lg mt-8">

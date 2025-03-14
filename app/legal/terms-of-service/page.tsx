@@ -103,9 +103,9 @@ export default function TermsOfService() {
                 If you have any questions regarding these Terms of Service, contact us:
               </p>
               <ul className="list-disc pl-6 mb-4">
-                <li>Email: <strong>legal@consultifycare.com</strong></li>
+              <li>Email: <strong>consultifycare@gmail.com</strong></li>
                 <li>Phone: <strong>+234 704 700 7770</strong></li>
-                <li>Address: Consultify Care HQ, Lagos, Nigeria</li>
+                <li>Address:Bassan Plaza Plot 759 Independent Avenue Central Business District Fct Independent Avenue, Central Business District, Federal Capital Territory</li>
               </ul>
 
               {/* Legal Notice */}

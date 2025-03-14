@@ -111,3 +111,20 @@ html {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
 }
 
+/* Scroll to top button pulse animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(67, 56, 202, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(67, 56, 202, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(67, 56, 202, 0);
+  }
+}
+
+.scroll-to-top-pulse {
+  animation: pulse 2s infinite;
+}
+

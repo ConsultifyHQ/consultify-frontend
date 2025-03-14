@@ -13,6 +13,7 @@ import TrustSignals from "@/components/trust-signals"
 import PartnerWithUs from "@/components/partner-with-us"
 import EmailSignup from "@/components/email-signup"
 import Footer from "@/components/footer"
+import ScrollToTop from "@/components/scroll-to-top"
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
       <PartnerWithUs />
       <EmailSignup />
       <Footer />
+      <ScrollToTop />
     </main>
   )
 }
