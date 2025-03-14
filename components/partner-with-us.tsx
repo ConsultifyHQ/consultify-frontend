@@ -1,6 +1,9 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Hospital, UserPlus, Building2 } from "lucide-react"
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Hospital, UserPlus, Building2 } from "lucide-react";
 
 export default function PartnerWithUs() {
   const partners = [
@@ -19,7 +22,46 @@ export default function PartnerWithUs() {
       title: "Labs & Pharmacies",
       description: "Connect with patients and streamline your service delivery.",
     },
-  ]
+  ];
+
+  // State for form inputs
+  const [email, setEmail] = useState("");
+  const [businessType, setBusinessType] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    // Send data to backend
+    try {
+      const res = await fetch("/api/partners", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, businessType }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      setSuccessMessage("Your application has been submitted successfully!");
+      setEmail("");
+      setBusinessType("");
+    } catch (error: any) {
+      setErrorMessage(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <section className="py-16 hero-gradient text-white">
@@ -43,7 +85,11 @@ export default function PartnerWithUs() {
 
         <div className="max-w-md mx-auto bg-white/20 backdrop-blur-sm p-6 rounded-lg">
           <h3 className="text-xl font-bold mb-4 text-center">Apply to Become a Partner</h3>
-          <form className="space-y-4">
+          
+          {successMessage && <p className="text-green-500 text-sm text-center mb-4">{successMessage}</p>}
+          {errorMessage && <p className="text-red-500 text-sm text-center mb-4">{errorMessage}</p>}
+
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="partner-email" className="block text-sm font-medium mb-1">
                 Business Email
@@ -53,6 +99,9 @@ export default function PartnerWithUs() {
                 type="email"
                 placeholder="your@business.com"
                 className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div>
@@ -62,7 +111,9 @@ export default function PartnerWithUs() {
               <select
                 id="partner-type"
                 className="w-full p-2 rounded-md bg-white/10 border border-white/20 text-white"
-                defaultValue=""
+                value={businessType}
+                onChange={(e) => setBusinessType(e.target.value)}
+                required
               >
                 <option value="" disabled>
                   Select your business type
@@ -74,11 +125,12 @@ export default function PartnerWithUs() {
                 <option value="wellness">Wellness Center</option>
               </select>
             </div>
-            <Button className="w-full bg-white text-primary hover:bg-white/90">Apply Now</Button>
+            <Button className="w-full bg-white text-primary hover:bg-white/90" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Apply Now"}
+            </Button>
           </form>
         </div>
       </div>
     </section>
-  )
+  );
 }
-
