@@ -1,23 +1,24 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from "react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
   phone: z.string().optional(),
   role: z.string().min(1, { message: "Please select a role" }),
-})
+});
 
 export default function WishlistForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -26,19 +27,30 @@ export default function WishlistForm() {
       phone: "",
       role: "",
     },
-  })
+  });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true)
-    // Simulate API call
+    setIsSubmitting(true);
+    setErrorMessage("");
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      console.log(values)
-      setIsSuccess(true)
-    } catch (error) {
-      console.error(error)
+      const res = await fetch("/api/wishlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      const responseData = await res.json();
+      console.log("Server Response:", responseData);
+
+      if (!res.ok) throw new Error(responseData.message || "Something went wrong");
+
+      setIsSuccess(true);
+    } catch (error: any) {
+      console.error("Error submitting form:", error.message);
+      setErrorMessage(error.message);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   }
 
@@ -67,66 +79,69 @@ export default function WishlistForm() {
           </div>
         </div>
       ) : (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone Number (Optional)</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter your phone number" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="role"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Your Role</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+        <>
+          {errorMessage && <p className="text-red-500 text-sm mb-4 text-center">{errorMessage}</p>}
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <SelectTrigger className="text-gray-500">
-                        <SelectValue placeholder="Select your role" />
-                      </SelectTrigger>
+                      <Input placeholder="Enter your email" {...field} />
                     </FormControl>
-                    <SelectContent >
-                      <SelectItem value="patient">Patient</SelectItem>
-                      <SelectItem value="doctor">Doctor</SelectItem>
-                      <SelectItem value="nurse">Nurse</SelectItem>
-                      <SelectItem value="lab">Lab Professional</SelectItem>
-                      <SelectItem value="pharmacy">Pharmacist</SelectItem>
-                      <SelectItem value="healthcare_provider">Healthcare Provider</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Join the Wishlist"}
-            </Button>
-          </form>
-        </Form>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number (Optional)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your phone number" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Your Role</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className="text-gray-500">
+                          <SelectValue placeholder="Select your role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="patient">Patient</SelectItem>
+                        <SelectItem value="doctor">Doctor</SelectItem>
+                        <SelectItem value="nurse">Nurse</SelectItem>
+                        <SelectItem value="lab">Lab Professional</SelectItem>
+                        <SelectItem value="pharmacy">Pharmacist</SelectItem>
+                        <SelectItem value="healthcare_provider">Healthcare Provider</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Join the Wishlist"}
+              </Button>
+            </form>
+          </Form>
+        </>
       )}
     </div>
-  )
+  );
 }
-

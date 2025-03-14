@@ -1,3 +1,4 @@
 {
+  "/api/wishlist/route": "app/api/wishlist/route.js",
   "/page": "app/page.js"
 }
