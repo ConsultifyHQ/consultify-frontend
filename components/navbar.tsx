@@ -4,11 +4,12 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Menu } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Menu, X } from "lucide-react"
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   // Handle scroll effect
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function Navbar() {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
+      setIsOpen(false) // Close the mobile menu after clicking
     }
   }
 
@@ -44,7 +46,7 @@ export default function Navbar() {
           <div className="relative w-8 h-8">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_4692.jpg-YwQKlQr08aJ278C4DNik75t7u8ghAg.jpeg"
-              alt="Consultify Care Logo"
+              alt="Consultify Logo"
               fill
               className="object-contain"
               priority
@@ -66,41 +68,57 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center space-x-4">
-          <Button size="sm" className="bg-primary hover:bg-primary/90">
-            Join Wishlist
-          </Button>
+        {/* Mobile Menu */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="md:hidden">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="p-0 w-[280px] sm:w-[350px]">
+            <div className="flex flex-col h-full">
+              {/* Mobile Menu Header */}
+              <div className="flex items-center justify-between p-4 border-b">
+                <div className="flex items-center space-x-2">
+                  <div className="relative w-8 h-8">
+                    <Image
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_4692.jpg-YwQKlQr08aJ278C4DNik75t7u8ghAg.jpeg"
+                      alt="Consultify Logo"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="font-bold text-primary">Consultify Care</span>
+                </div>
+                <SheetClose className="rounded-full p-2 hover:bg-gray-100">
+                  {/* <X className="h-5 w-5" /> */}
+                  <span className="sr-only">Close</span>
+                </SheetClose>
+              </div>
 
-          {/* Mobile Menu */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col space-y-4 mt-6">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      scrollToSection(item.id)
-                      // Close the sheet after clicking
-                      const closeButton = document.querySelector("[data-radix-collection-item]")
-                      if (closeButton instanceof HTMLElement) {
-                        closeButton.click()
-                      }
-                    }}
-                    className="text-sm font-medium text-gray-600 hover:text-primary transition-colors"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
+              {/* Mobile Menu Content */}
+              <div className="flex-1 overflow-auto py-6 px-4">
+                <nav className="flex flex-col space-y-6">
+                  {navItems.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className="flex items-center space-x-2 text-base font-medium text-gray-700 hover:text-primary transition-colors py-2 border-b border-gray-100"
+                    >
+                      <span>{item.label}</span>
+                    </button>
+                  ))}
+                </nav>
+              </div>
+
+              {/* Mobile Menu Footer */}
+              <div className="p-4 border-t text-center text-sm text-gray-500">
+                <p>© {new Date().getFullYear()} Consultify Care</p>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   )

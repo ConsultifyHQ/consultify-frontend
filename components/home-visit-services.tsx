@@ -1,22 +1,23 @@
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 
 export default function HomeVisitServices() {
   const services = [
     {
-      image: "/placeholder.svg?height=300&width=400",
+      image:
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Healthcare%27s%20racial%20divide-N6gDW6kw7dMkydhNBpaJi7C4o9KU2L.jpeg",
       title: "Nurse Home visits for personalized care",
       description: "Skilled nursing services in the comfort of your home.",
       cta: "Book a nurse",
     },
     {
-      image: "/placeholder.svg?height=300&width=400",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WebP%20Image-Iu2rbB7H8Rgqxb0XHR55tyogqiEc4f.webp",
       title: "Easy lab sample collection",
       description: "Technicians collect samples from your home for testing.",
       cta: "Schedule collection",
     },
     {
-      image: "/placeholder.svg?height=300&width=400",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image_3-o8wqnzkfOnA7bqN6KTYtd45mFNbaWX.png",
       title: "Efficient mobile healthcare",
       description: "Mobile healthcare units for comprehensive services.",
       cta: "View services",
@@ -38,7 +39,13 @@ export default function HomeVisitServices() {
               className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <div className="relative h-48 w-full">
-                <Image src={service.image || "/placeholder.svg"} alt={service.title} fill className="object-cover" />
+                <Image
+                  src={service.image || "/placeholder.svg"}
+                  alt={service.title}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">{service.title}</h3>
